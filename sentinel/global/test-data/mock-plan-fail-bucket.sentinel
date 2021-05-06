@@ -1,0 +1,530 @@
+terraform_version = "0.15.0"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_s3_bucket.demo": {
+			"address":        "aws_s3_bucket.demo",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "demo",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket",
+			"values": {
+				"acl":                                  "public-read",
+				"bucket":                               "tf-cloud-workspaces-demo-prd-us-west-2",
+				"bucket_prefix":                        null,
+				"cors_rule":                            [],
+				"force_destroy":                        false,
+				"grant":                                [],
+				"lifecycle_rule":                       [],
+				"logging":                              [],
+				"object_lock_configuration":            [],
+				"policy":                               null,
+				"replication_configuration":            [],
+				"server_side_encryption_configuration": [],
+				"tags": {
+					"environment": "prd",
+				},
+				"website": [],
+			},
+		},
+		"aws_s3_bucket_object.object": {
+			"address":        "aws_s3_bucket_object.object",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "object",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket_object",
+			"values": {
+				"acl":                           "private",
+				"bucket":                        "tf-cloud-workspaces-demo-prd-us-west-2",
+				"cache_control":                 null,
+				"content":                       "this is bucket prd-us-west-2",
+				"content_base64":                null,
+				"content_disposition":           null,
+				"content_encoding":              null,
+				"content_language":              null,
+				"force_destroy":                 false,
+				"key":                           "demo_obj.txt",
+				"metadata":                      null,
+				"object_lock_legal_hold_status": null,
+				"object_lock_mode":              null,
+				"object_lock_retain_until_date": null,
+				"source":                        null,
+				"tags":                          null,
+				"website_redirect":              null,
+			},
+		},
+	},
+}
+
+variables = {
+	"access_key": {
+		"name":  "access_key",
+		"value": "XXXXXXXXXXXXXXXXXXXX",
+	},
+	"account_id": {
+		"name":  "account_id",
+		"value": "123456789012",
+	},
+	"environment": {
+		"name":  "environment",
+		"value": "prd",
+	},
+	"force_destroy": {
+		"name": "force_destroy",
+		"value": {
+			"prd-us-west-2": false,
+			"stg-us-west-2": true,
+			"tst-us-west-2": true,
+		},
+	},
+	"region": {
+		"name":  "region",
+		"value": "us-west-2",
+	},
+	"secret_key": {
+		"name":  "secret_key",
+		"value": "xxx",
+	},
+	"tags": {
+		"name": "tags",
+		"value": {
+			"prd-us-west-2": {
+				"environment": "prd",
+			},
+			"stg-us-west-2": {
+				"environment": "stg",
+			},
+			"tst-us-west-2": {
+				"environment": "tst",
+			},
+		},
+	},
+}
+
+resource_changes = {
+	"aws_s3_bucket.demo": {
+		"address": "aws_s3_bucket.demo",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"acl":                                  "public-read",
+				"bucket":                               "tf-cloud-workspaces-demo-prd-us-west-2",
+				"bucket_prefix":                        null,
+				"cors_rule":                            [],
+				"force_destroy":                        false,
+				"grant":                                [],
+				"lifecycle_rule":                       [],
+				"logging":                              [],
+				"object_lock_configuration":            [],
+				"policy":                               null,
+				"replication_configuration":            [],
+				"server_side_encryption_configuration": [],
+				"tags": {
+					"environment": "prd",
+				},
+				"website": [],
+			},
+			"after_unknown": {
+				"acceleration_status": true,
+				"arn":                                  true,
+				"bucket_domain_name":                   true,
+				"bucket_regional_domain_name":          true,
+				"cors_rule":                            [],
+				"grant":                                [],
+				"hosted_zone_id":                       true,
+				"id":                                   true,
+				"lifecycle_rule":                       [],
+				"logging":                              [],
+				"object_lock_configuration":            [],
+				"region":                               true,
+				"replication_configuration":            [],
+				"request_payer":                        true,
+				"server_side_encryption_configuration": [],
+				"tags":             {},
+				"versioning":       true,
+				"website":          [],
+				"website_domain":   true,
+				"website_endpoint": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "demo",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket",
+	},
+	"aws_s3_bucket_object.object": {
+		"address": "aws_s3_bucket_object.object",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"acl":                           "private",
+				"bucket":                        "tf-cloud-workspaces-demo-prd-us-west-2",
+				"cache_control":                 null,
+				"content":                       "this is bucket prd-us-west-2",
+				"content_base64":                null,
+				"content_disposition":           null,
+				"content_encoding":              null,
+				"content_language":              null,
+				"force_destroy":                 false,
+				"key":                           "demo_obj.txt",
+				"metadata":                      null,
+				"object_lock_legal_hold_status": null,
+				"object_lock_mode":              null,
+				"object_lock_retain_until_date": null,
+				"source":                        null,
+				"tags":                          null,
+				"website_redirect":              null,
+			},
+			"after_unknown": {
+				"content_type":           true,
+				"etag":                   true,
+				"id":                     true,
+				"kms_key_id":             true,
+				"server_side_encryption": true,
+				"storage_class":          true,
+				"version_id":             true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "object",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket_object",
+	},
+}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"access_key": {
+						"references": [
+							"var.access_key",
+						],
+					},
+					"assume_role": [
+						{
+							"role_arn": {
+								"references": [
+									"var.account_id",
+									"local.workspace",
+								],
+							},
+						},
+					],
+					"region": {
+						"references": [
+							"var.region",
+						],
+					},
+					"secret_key": {
+						"references": [
+							"var.secret_key",
+						],
+					},
+				},
+				"name": "aws",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_s3_bucket.demo",
+					"expressions": {
+						"bucket": {
+							"references": [
+								"local.workspace",
+							],
+						},
+						"force_destroy": {
+							"references": [
+								"var.force_destroy",
+								"local.workspace",
+							],
+						},
+						"tags": {
+							"references": [
+								"var.tags",
+								"local.workspace",
+							],
+						},
+					},
+					"mode":                "managed",
+					"name":                "demo",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket",
+				},
+				{
+					"address": "aws_s3_bucket_object.object",
+					"expressions": {
+						"bucket": {
+							"references": [
+								"aws_s3_bucket.demo",
+							],
+						},
+						"content": {
+							"references": [
+								"local.workspace",
+							],
+						},
+						"key": {
+							"constant_value": "demo_obj.txt",
+						},
+					},
+					"mode":                "managed",
+					"name":                "object",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket_object",
+				},
+			],
+			"variables": {
+				"access_key":  {},
+				"account_id":  {},
+				"environment": {},
+				"force_destroy": {
+					"default": {
+						"prd-us-west-2": false,
+						"stg-us-west-2": true,
+						"tst-us-west-2": true,
+					},
+				},
+				"region":     {},
+				"secret_key": {},
+				"tags": {
+					"default": {
+						"prd-us-west-2": {
+							"environment": "prd",
+						},
+						"stg-us-west-2": {
+							"environment": "stg",
+						},
+						"tst-us-west-2": {
+							"environment": "tst",
+						},
+					},
+				},
+			},
+		},
+	},
+	"format_version": "0.1",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_s3_bucket.demo",
+					"mode":           "managed",
+					"name":           "demo",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"type":           "aws_s3_bucket",
+					"values": {
+						"acl":                                  "private",
+						"bucket":                               "tf-cloud-workspaces-demo-prd-us-west-2",
+						"bucket_prefix":                        null,
+						"cors_rule":                            [],
+						"force_destroy":                        false,
+						"grant":                                [],
+						"lifecycle_rule":                       [],
+						"logging":                              [],
+						"object_lock_configuration":            [],
+						"policy":                               null,
+						"replication_configuration":            [],
+						"server_side_encryption_configuration": [],
+						"tags": {
+							"environment": "prd",
+						},
+						"website": [],
+					},
+				},
+				{
+					"address":        "aws_s3_bucket_object.object",
+					"mode":           "managed",
+					"name":           "object",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"type":           "aws_s3_bucket_object",
+					"values": {
+						"acl":                           "private",
+						"bucket":                        "tf-cloud-workspaces-demo-prd-us-west-2",
+						"cache_control":                 null,
+						"content":                       "this is bucket prd-us-west-2",
+						"content_base64":                null,
+						"content_disposition":           null,
+						"content_encoding":              null,
+						"content_language":              null,
+						"force_destroy":                 false,
+						"key":                           "demo_obj.txt",
+						"metadata":                      null,
+						"object_lock_legal_hold_status": null,
+						"object_lock_mode":              null,
+						"object_lock_retain_until_date": null,
+						"source":                        null,
+						"tags":                          null,
+						"website_redirect":              null,
+					},
+				},
+			],
+		},
+	},
+	"resource_changes": [
+		{
+			"address": "aws_s3_bucket.demo",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"acl":                                  "private",
+					"bucket":                               "tf-cloud-workspaces-demo-prd-us-west-2",
+					"bucket_prefix":                        null,
+					"cors_rule":                            [],
+					"force_destroy":                        false,
+					"grant":                                [],
+					"lifecycle_rule":                       [],
+					"logging":                              [],
+					"object_lock_configuration":            [],
+					"policy":                               null,
+					"replication_configuration":            [],
+					"server_side_encryption_configuration": [],
+					"tags": {
+						"environment": "prd",
+					},
+					"website": [],
+				},
+				"after_unknown": {
+					"acceleration_status": true,
+					"arn":                                  true,
+					"bucket_domain_name":                   true,
+					"bucket_regional_domain_name":          true,
+					"cors_rule":                            [],
+					"grant":                                [],
+					"hosted_zone_id":                       true,
+					"id":                                   true,
+					"lifecycle_rule":                       [],
+					"logging":                              [],
+					"object_lock_configuration":            [],
+					"region":                               true,
+					"replication_configuration":            [],
+					"request_payer":                        true,
+					"server_side_encryption_configuration": [],
+					"tags":             {},
+					"versioning":       true,
+					"website":          [],
+					"website_domain":   true,
+					"website_endpoint": true,
+				},
+				"before": null,
+			},
+			"mode":          "managed",
+			"name":          "demo",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket",
+		},
+		{
+			"address": "aws_s3_bucket_object.object",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"acl":                           "public-read",
+					"bucket":                        "tf-cloud-workspaces-demo-prd-us-west-2",
+					"cache_control":                 null,
+					"content":                       "this is bucket prd-us-west-2",
+					"content_base64":                null,
+					"content_disposition":           null,
+					"content_encoding":              null,
+					"content_language":              null,
+					"force_destroy":                 false,
+					"key":                           "demo_obj.txt",
+					"metadata":                      null,
+					"object_lock_legal_hold_status": null,
+					"object_lock_mode":              null,
+					"object_lock_retain_until_date": null,
+					"source":                        null,
+					"tags":                          null,
+					"website_redirect":              null,
+				},
+				"after_unknown": {
+					"content_type":           true,
+					"etag":                   true,
+					"id":                     true,
+					"kms_key_id":             true,
+					"server_side_encryption": true,
+					"storage_class":          true,
+					"version_id":             true,
+				},
+				"before": null,
+			},
+			"mode":          "managed",
+			"name":          "object",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket_object",
+		},
+	],
+	"terraform_version": "0.15.0",
+	"variables": {
+		"access_key": {
+			"value": "XXXXXXXXXXXXXXXXXXXXX",
+		},
+		"account_id": {
+			"value": "123456789012",
+		},
+		"environment": {
+			"value": "prd",
+		},
+		"force_destroy": {
+			"value": {
+				"prd-us-west-2": false,
+				"stg-us-west-2": true,
+				"tst-us-west-2": true,
+			},
+		},
+		"region": {
+			"value": "us-west-2",
+		},
+		"secret_key": {
+			"value": "xxx",
+		},
+		"tags": {
+			"value": {
+				"prd-us-west-2": {
+					"environment": "prd",
+				},
+				"stg-us-west-2": {
+					"environment": "stg",
+				},
+				"tst-us-west-2": {
+					"environment": "tst",
+				},
+			},
+		},
+	},
+}

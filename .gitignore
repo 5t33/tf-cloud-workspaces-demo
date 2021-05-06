@@ -2,3 +2,4 @@ secrets.auto.tfvars
 .terraform
 terraform.tfstate*
 .terraform.lock.hcl*
+.sentinel

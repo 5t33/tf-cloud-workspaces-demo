@@ -5,11 +5,7 @@ workspaces = {
     working_directory = "module",
     ssh_key_id = null,
     speculative_enabled = true,
-    vcs_repo = {
-      identifier = "5t33/tf-cloud-workspaces-demo",
-      branch = "main",
-      ingress_submodules = false
-    },
+    vcs_repo = null,
     variables = [
       {
         key = "environment",
@@ -30,11 +26,7 @@ workspaces = {
     working_directory = "module"
     ssh_key_id = null
     speculative_enabled = true
-    vcs_repo = {
-      identifier = "5t33/tf-cloud-workspaces-demo",
-      branch = "main",
-      ingress_submodules = false
-    },
+    vcs_repo = null,
     variables = [
       {
         key = "environment",
@@ -55,11 +47,7 @@ workspaces = {
     working_directory = "module"
     ssh_key_id = null
     speculative_enabled = true
-    vcs_repo = {
-      identifier = "5t33/tf-cloud-workspaces-demo",
-      branch = "main",
-      ingress_submodules = false
-    },
+    vcs_repo = null,
     variables = [
       {
         key = "environment",
