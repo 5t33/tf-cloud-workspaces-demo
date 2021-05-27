@@ -31,6 +31,7 @@ variable "policy_sets" {
         enforce_mode = string
       }))
       workspaces = list(string)
+      global = bool
     })
   )
 }
@@ -41,6 +42,7 @@ module "policy_sets" {
   policy_set_name = each.key
   policies = each.value.policies
   workspaces = each.value.workspaces
+  global = each.value.global
   organization = var.organization
 }
 

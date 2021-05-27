@@ -8,7 +8,8 @@ module "policies" {
   tfe_token = var.tfe_token
   policy_sets = {
     global = {
-      workspaces = []
+      global = true
+      workspaces = null
       policies = {
         must_not_be_public = {
           file_path = "s3_must_not_be_public.sentinel",
