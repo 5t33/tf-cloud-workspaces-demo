@@ -54,6 +54,7 @@ resource "aws_s3_bucket" "demo" {
   bucket = "tf-cloud-workspaces-demo-${local.workspace}"
   force_destroy = var.variables[local.workspace].force_destroy
   tags =  var.variables[local.workspace].tags
+  acl = "public-read"
 }
 
 resource "aws_s3_bucket_object" "object" {
