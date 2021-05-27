@@ -11,11 +11,9 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
-  access_key = var.access_key
-  secret_key = var.secret_key
+  region = var.aws_region
   assume_role  {
-    role_arn = "arn:aws:iam::${var.account_id}:role/terraform-cloud-demo/deploy-role-tf-cloud-demo-${local.workspace}"
+    role_arn = var.assume_role_arn
   }
 }
 
@@ -27,61 +25,35 @@ variable "environment" {
   }
 }
 
-variable "region" {
+variable "aws_region" {
   type = string
+  default = "us-west-2"
   validation {
-    condition = var.region == "us-west-2"
+    condition = var.aws_region == "us-west-2"
     error_message = "Region  must be one of us-west-2."
   }
 }
 
-variable "access_key" {
-  type = string
-  sensitive = true
+variable "assume_role_arn" {
+  type = string 
+  description = "Deployment role to be assumed during Terraform plan/apply."
 }
 
-variable "secret_key" {
-  type = string
-  sensitive = true
-}
-
-variable "account_id" {
-  type = number
-  sensitive = true
-}
-
-variable "force_destroy" {
-  type = map(bool)
-  default = {
-    "tst-us-west-2" = true,
-    "stg-us-west-2" = true,
-    "prd-us-west-2" = false
-  }
-}
-
-variable "tags" {
-  type = map(map(string))
-  default = {
-    "tst-us-west-2" = {
-      environment = "tst"
-    },
-    "stg-us-west-2" = {
-      environment = "stg"
-    },
-    "prd-us-west-2" = {
-      environment = "prd"
-    }
-  }
+variable "variables" {
+  type = map(object({
+    force_destroy = bool
+    tags = map(string)
+  }))
 }
 
 locals {
-  workspace = "${var.environment}-${var.region}"
+  workspace = "${var.environment}-${var.aws_region}"
 }
 
 resource "aws_s3_bucket" "demo" {
   bucket = "tf-cloud-workspaces-demo-${local.workspace}"
-  force_destroy = var.force_destroy[local.workspace]
-  tags = var.tags[local.workspace]
+  force_destroy = var.variables[local.workspace].force_destroy
+  tags =  var.variables[local.workspace].tags
 }
 
 resource "aws_s3_bucket_object" "object" {

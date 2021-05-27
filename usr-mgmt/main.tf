@@ -1,10 +1,19 @@
 provider "aws" {
-  region = "us-west-2"
-  profile = "personal"
+  region = var.aws_region
+  profile = var.aws_profile
 }
 
 data "aws_iam_user" "deployment_user" {
   user_name = var.user_name
+}
+
+variable "aws_region" {
+  type = string
+  default = "us-west-2"
+}
+
+variable "aws_profile" {
+  type = string
 }
 
 variable "user_name" {
@@ -99,4 +108,27 @@ resource "aws_iam_policy" "user_assume_role_policy" {
 resource "aws_iam_user_policy_attachment" "user_policy_attachment" {
   user       = data.aws_iam_user.deployment_user.user_name
   policy_arn = aws_iam_policy.user_assume_role_policy.arn
+}
+
+resource "aws_iam_access_key" "this" {
+  user = data.aws_iam_user.deployment_user.user_name
+}
+
+resource "aws_ssm_parameter" "access_key_id" {
+  name = "/tf-cloud-demo/deployment_user/aws_access_key_id"
+  value = aws_iam_access_key.this.id
+  type = "SecureString"
+}
+
+resource "aws_ssm_parameter" "secret_access_key" {
+  name = "/tf-cloud-demo/deployment_user/secret_access_key"
+  value = aws_iam_access_key.this.secret
+  type = "SecureString"
+}
+
+resource "aws_ssm_parameter" "deployment_role_arn" {
+  for_each = aws_iam_role.deploy_roles
+  name = "/tf-cloud-demo/deployment_user/deployment_role_arn/${each.key}"
+  value = each.value.arn
+  type = "String"
 }

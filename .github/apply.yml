@@ -1,0 +1,69 @@
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'module/**'
+jobs:
+  apply-tst:
+    name: 'apply-tst'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: "tst-us-west-2"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_CLOUD_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: TF_LOG=info terraform init
+        working-directory: module
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply
+        continue-on-error: true
+        working-directory: module
+  apply-stg:
+    needs: 'apply-tst'
+    name: 'apply-stg'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: "stg-us-west-2"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_CLOUD_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: TF_LOG=info terraform init
+        working-directory: module
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply
+        working-directory: module
+  apply-prd:
+    needs: 'apply-stg'
+    name: 'apply-prd'
+    runs-on: ubuntu-latest
+    env:
+      TF_WORKSPACE: "prd-us-west-2"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_CLOUD_TOKEN }}
+      - name: Terraform Init
+        id: init
+        run: TF_LOG=info terraform init
+        working-directory: module
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply
+        working-directory: module
