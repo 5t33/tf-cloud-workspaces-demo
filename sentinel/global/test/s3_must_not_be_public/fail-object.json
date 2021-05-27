@@ -1,0 +1,8 @@
+{
+  "mock": {
+    "tfplan/v2": "../../test-data/mock-plan-fail-object.sentinel"
+  },
+  "test": {
+    "main": false
+  }
+}
